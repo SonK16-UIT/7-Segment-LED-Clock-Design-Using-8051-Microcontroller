@@ -1,0 +1,32 @@
+A51 MACRO ASSEMBLER  CODE_CLOCK                                                           05/17/2023 18:42:08 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\code_clock.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE code_clock.asm SET(SMALL) DEBUG PRINT(.\Listings\code_clock.lst) OBJECT
+                      (.\Objects\code_clock.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000 754B56            1     MOV 4BH, #56H
+0003 784A              2     MOV R0, #4AH
+0005 7414              3     MOV A, #14H
+0007 04                4     INC A
+0008 F6                5     MOV @R0, A
+0009 08                6     INC R0
+000A E6                7     MOV A,@R0
+*** WARNING #A41 IN 7 (code_clock.asm, LINE 7): MISSING 'END' STATEMENT
+A51 MACRO ASSEMBLER  CODE_CLOCK                                                           05/17/2023 18:42:08 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  1 WARNING(S), 0 ERROR(S)

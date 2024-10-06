@@ -1,0 +1,43 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/17/2023  18:42:08  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\code_clock.obj TO .\Objects\digital_clock_1 PRINT (.\Listings\digital_clock_1.m51)
+>>  RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\code_clock.obj (CODE_CLOCK)
+
+
+LINK MAP OF MODULE:  .\Objects\digital_clock_1 (CODE_CLOCK)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     000BH     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\digital_clock_1 (CODE_CLOCK)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        CODE_CLOCK
+  C:0000H         LINE#         65533
+  C:0003H         LINE#         2
+  C:0005H         LINE#         3
+  C:0007H         LINE#         4
+  C:0008H         LINE#         5
+  C:0009H         LINE#         6
+  C:000AH         LINE#         7
+  -------         ENDMOD        CODE_CLOCK
+
+Program Size: data=8.0 xdata=0 code=11
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

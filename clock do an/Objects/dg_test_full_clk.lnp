@@ -1,0 +1,3 @@
+".\Objects\code clk.obj" 
+TO ".\Objects\dg_test_full_clk" 
+PRINT(".\Listings\dg_test_full_clk.m51") RAMSIZE(256) 

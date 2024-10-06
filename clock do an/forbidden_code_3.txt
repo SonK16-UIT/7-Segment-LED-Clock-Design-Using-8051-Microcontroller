@@ -1,0 +1,23 @@
+Change_time:
+ MOV P0, #0FFH
+ JB P0.0,SIG_H_I
+ JB P0.1,SIG_M_I
+ 
+ JB P0.4,RESTART_TIME
+ //JB P0.5,SET_TIME
+ JB P0.7,ALARM_OFF
+ LM:
+ ACALL ALARM_ST
+ ACALL DELAY
+ JMP Time_condition
+ ALARM_OFF:
+ CLR P0.7
+ JMP LM
+--------------------
+ALARM_ST:
+ CJNE R3,#5D, Time_condition
+ CJNE R2,#9D, Time_condition
+ SETB P0.7
+ ACALL DELAY
+ RET
+59:00->59:59
