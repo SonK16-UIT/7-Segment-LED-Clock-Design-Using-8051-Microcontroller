@@ -1,0 +1,3 @@
+".\Objects\code_clock.obj" 
+TO ".\Objects\digital_clock_1" 
+PRINT(".\Listings\digital_clock_1.m51") RAMSIZE(256) 

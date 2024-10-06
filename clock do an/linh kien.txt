@@ -1,0 +1,22 @@
+USP ISP:
+https://www.thegioiic.com/mach-nap-51-avr-usbasp-usb-isp
+Thạch anh 12MHZ:
+https://www.thegioiic.com/thach-anh-12mhz-2-chan-dip-hc49-s
+Tụ gốm 30pF:
+https://www.thegioiic.com/tu-gom-tron-30pf-50v
+Điện trở 10kOhm:
+https://www.thegioiic.com/dien-tro-10-kohm-1w-1-5-vong-mau
+Tụ hóa 1uF:
+https://www.thegioiic.com/tu-hoa-10uf-450v-12-5x30mm-xuyen-lo-vishay-mal204217109e3
+nút bấm:
+https://www.thegioiic.com/ds-227-nut-nhan-nha-12mm-2-chan-mau-xanh-duong
+Dây đực đực:
+https://www.thegioiic.com/day-be-duc-duc-dai-15cm
+Dây bẹ đực cái:
+https://www.thegioiic.com/day-be-duc-cai-dai-15cm
+Breadboard:
+https://www.thegioiic.com/zy-204-breadboard-cam-linh-kien-1660-lo
+ led 7 seg 6 digit :
+https://shopee.vn/product/85716713/17366646621?gclid=Cj0KCQjw8qmhBhClARIsANAtbocgc7-6Kp6k5zxyaquSmEecWg79Oa4u-m5eAvWSCjMTqmB1N7AdPBMaAnF7EALw_wcB
+At89C51:
+https://shopee.vn/Linh-kiện-AT89C51-24PU-24PI-chân-cắm-DIP-40-vi-xử-lý-8bit-i.882465674.21872748048?sp_atk=6d0972ec-1e1f-4f16-8901-1c2b615b9430&xptdk=6d0972ec-1e1f-4f16-8901-1c2b615b9430

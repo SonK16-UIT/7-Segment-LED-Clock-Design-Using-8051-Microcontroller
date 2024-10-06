@@ -1,0 +1,129 @@
+C51 COMPILER V9.60.0.0   CACULATOR                                                         03/08/2023 21:52:48 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE CACULATOR
+OBJECT MODULE PLACED IN .\Objects\caculator.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE caculator.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\caculator.lst) TABS(2) OBJECT(.\Objects\caculator.obj)
+
+line level    source
+
+   1          ORG 00H
+*** ERROR C129 IN LINE 1 OF caculator.c: missing ';' before '00'
+   2           LJMP MAIN 
+   3           ORG 30H
+   4            MAIN:
+   5           MOV DPTR , #MYDATA
+   6           START:
+   7           MOV R0,#00H
+   8           MOV R1,#00H
+   9           MOV R2,#00H
+  10           MOV R3,#00H
+  11           MOV R4,#00H
+  12           MOV R5,#00H
+  13           
+  14           CJNE R7 ,#0D , DISPLAY
+  15           MOV R0,#0H
+  16           MOV R1,#5H
+  17           MOV R2,#9H
+  18           MOV R3,#5H
+  19           MOV R4,#3H
+  20           MOV R5,#2H
+  21           MOV R7,#00H
+  22           
+  23           
+  24           DISPLAY:
+  25           INC R7
+  26           ACALL SHOW
+  27           BACK:
+  28           INC R0
+  29           CJNE R0, #10D, DISPLAY
+  30           MOV R0, #00H
+  31           INC R1
+  32           CJNE R1, #6D ,DISPLAY
+  33           MOV R1, #00H
+  34           INC R2
+  35           CJNE R2,#10D,DISPLAY
+  36           MOV R2,#00H
+  37           INC R3
+  38           CJNE R3,#6D,DISPLAY
+  39           MOV R3,#00H
+  40           MOV A,R5
+  41           XRL A, #2D
+  42           JZ SCREENSHOT
+  43           JNZ BLA
+  44           BLA:
+  45           INC R4
+  46           CJNE R4,#10D,DISPLAY
+  47           MOV R4,#00H
+  48           SJMP BLABLA
+  49           SCREENSHOT:
+  50           INC R4
+  51           CJNE R4,#4D,DISPLAY
+  52           MOV R4 ,#00H
+  53           MOV R5,#02D
+C51 COMPILER V9.60.0.0   CACULATOR                                                         03/08/2023 21:52:48 PAGE 2   
+
+  54           
+  55           BLABLA:
+  56           INC R5
+  57           CJNE R5,#3D,DISPLAY
+  58           SJMP START
+  59           
+  60           SHOW:
+  61           MOV R6,#82D
+  62           REPEAT:
+  63           MOV A,R0
+  64           MOVC A,@A+DPTR
+  65           SETB P2.0
+  66           MOV P1,A
+  67           ACALL DELAY
+  68           CLR P2.0
+  69           MOV A,R1
+  70           MOVC A,@A+DPTR
+  71           SETB P2.1
+  72           MOV P1,A
+  73           ACALL DELAY
+  74           CLR P2.1
+  75           MOV A,R2
+  76           MOVC A,@A+DPTR
+  77           SETB P2.2
+  78           MOV P1,A
+  79           ACALL DELAY
+  80           CLR P2.2
+  81           MOV A,R3
+  82           MOVC A,@A+DPTR
+  83           SETB P2.3
+  84           MOV P1 ,A
+  85           ACALL DELAY
+  86           CLR P2.3
+  87           MOV A,R4
+  88           MOVC A,@A+DPTR
+  89           SETB P2.4
+  90           MOV P1,A
+  91           ACALL DELAY
+  92           CLR P2.4
+  93           MOV A,R5
+  94           MOVC A,@A+DPTR
+  95           SETB P2.5
+  96           MOV P1,A
+  97           ACALL DELAY
+  98           CLR P2.5
+  99           DJNZ R6, REPEAT
+ 100           RET
+ 101           
+ 102           DELAY:
+ 103           SETB PSW. 4
+ 104           MOV R2,#10
+ 105           AGAIN2: MOV R3 ,#100
+ 106           AGAIN1:DJNZ R3,AGAIN1
+ 107           DJNZ R2 , AGAIN2
+ 108           CLR PSW. 4
+ 109           RET
+ 110           
+ 111           ORG 300H
+ 112            MYDATA:
+ 113            DB 3FH,06H,5BH,4FH,66H,6DH,7DH,07H,7FH,6FH
+ 114             END
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

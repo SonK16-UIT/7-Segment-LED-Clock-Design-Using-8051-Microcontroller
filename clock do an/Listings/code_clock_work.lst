@@ -1,0 +1,240 @@
+A51 MACRO ASSEMBLER  CODE_CLOCK_WORK                                                      05/04/2023 21:03:41 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\code_clock_work.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE code_clock_work.a51 SET(SMALL) DEBUG PRINT(.\Listings\code_clock_work.l
+                      st) OBJECT(.\Objects\code_clock_work.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 00H
+0000 020012            2      LJMP MAIN
+                       3      
+0003                   4      ALARM_ST:
+0003 BB054A            5      CJNE R3,#5D,L1
+0006 BA0947            6      CJNE R2,#9D,L1
+0009 B90544            7      CJNE R1,#5D,L1
+000C D285              8      SETB P0.5
+000E 11F4              9      ACALL DELAY
+0010 8042             10      JMP Time_condition
+                      11      
+0012                  12      MAIN:
+0012 900300           13        MOV DPTR , #MYDATA
+0015                  14      SETUP_TIME:
+0015 7800             15      MOV R0,#00H
+0017 7900             16      MOV R1,#00H
+0019 7A08             17      MOV R2,#08H
+001B 7B05             18      MOV R3,#05H
+001D 7C02             19      MOV R4,#02H
+001F 7D01             20      MOV R5,#01H
+0021 02003A           21      LJMP DISPLAY
+                      22      
+0024                  23      RESTART_TIME:
+0024 7800             24      MOV R0,#00H
+0026 7900             25      MOV R1,#00H
+0028 7A00             26      MOV R2,#00H
+002A 7B00             27      MOV R3,#00H
+002C 7C00             28      MOV R4,#00H
+002E 7D00             29      MOV R5,#00H
+0030 02003A           30      LJMP DISPLAY
+                      31      
+0033                  32      RESTART_TIME_2:
+0033 7C03             33      MOV R4,#03H
+0035 7D02             34      MOV R5,#02H
+0037 02003A           35      LJMP DISPLAY
+                      36     
+003A                  37      DISPLAY:
+003A 11B0             38      ACALL SHOW_NUM
+003C                  39      Receive_Signal:
+003C 758000           40      MOV P0, #00H
+003F 20802A           41      JB P0.0,SIG_H_I
+0042 20811B           42      JB P0.1,SIG_M_I
+0045 20824E           43      JB P0.2,SIG_H_D
+0048 20833F           44      JB P0.3,SIG_M_D
+004B 2084D6           45      JB P0.4,RESTART_TIME
+004E 80B3             46      JMP ALARM_ST
+0050                  47      L1:
+0050 C285             48      CLR P0.5
+0052 11F4             49      ACALL DELAY
+                      50      
+0054                  51      Time_condition:
+0054 08               52      INC R0
+0055 B80AE2           53      CJNE R0, #10D,DISPLAY
+0058 7800             54      MOV R0, #0D
+005A 09               55      INC R1
+005B B906DC           56      CJNE R1, #6D ,DISPLAY
+005E 7900             57      MOV R1, #0D
+A51 MACRO ASSEMBLER  CODE_CLOCK_WORK                                                      05/04/2023 21:03:41 PAGE     2
+
+                      58      
+0060                  59      SIG_M_I:
+0060 0A               60      INC R2
+0061 BA0AD6           61      CJNE R2,#10D,DISPLAY
+0064 7A00             62      MOV R2,#00H
+0066 0B               63      INC R3
+0067 BB06D0           64      CJNE R3,#6D,DISPLAY
+006A 7B00             65      MOV R3,#00H
+                      66      
+006C                  67      SIG_H_I:
+006C ED               68      MOV A,R5
+006D 6402             69      XRL A, #2D 
+006F 600A             70      JZ INCRE_H1_2
+0071 7000             71      JNZ INCRE_H2
+                      72      
+0073                  73      INCRE_H2:
+0073 0C               74      INC R4
+0074 BC0AC3           75      CJNE R4,#10D,DISPLAY
+0077 7C00             76      MOV R4,#0D
+0079 8008             77      SJMP INCRE_H1_1
+                      78      
+007B                  79      INCRE_H1_2:
+007B 0C               80      INC R4
+007C BC04BB           81      CJNE R4,#4D,DISPLAY
+007F 7C00             82      MOV R4 ,#0D
+0081 7D02             83      MOV R5,#02D
+                      84      
+0083                  85      INCRE_H1_1: 
+0083 0D               86      INC R5
+0084 BD03B3           87      CJNE R5,#3D,DISPLAY
+0087 020024           88      LJMP RESTART_TIME
+                      89      
+008A                  90      Time_condition_2:
+008A                  91      SIG_M_D:
+008A 1A               92      DEC R2
+008B BAFFAC           93      CJNE R2,#-1D,DISPLAY
+008E 7A09             94      MOV R2,#9D
+0090 1B               95      DEC R3
+0091 BBFFA6           96      CJNE R3,#-1D,DISPLAY
+0094 7B05             97      MOV R3,#5D
+                      98      
+0096                  99      SIG_H_D:
+0096 ED              100      MOV A,R5
+0097 6402            101      XRL A, #2D 
+0099 600A            102      JZ DECRE_TH0
+009B 7000            103      JNZ DECRE_TH1
+009D                 104      DECRE_TH1:
+009D 1C              105      DEC R4
+009E BCFF99          106      CJNE R4,#-1D,DISPLAY
+00A1 7C09            107      MOV R4,#9D
+00A3 8004            108      SJMP DECRE_H1_1
+                     109      
+00A5                 110      DECRE_TH0:
+00A5 1C              111      DEC R4
+00A6 BCFF91          112      CJNE R4,#-1D,DISPLAY
+                     113      
+00A9                 114      DECRE_H1_1: 
+00A9 1D              115      DEC R5
+00AA BDFF8D          116      CJNE R5,#-1D,DISPLAY
+00AD 020033          117      LJMP RESTART_TIME_2
+                     118      
+00B0                 119      SHOW_NUM: 
+00B0 7E4B            120      MOV R6,#75
+00B2 900300          121      MOV DPTR , #MYDATA
+00B5                 122      LOOP:
+00B5 E8              123      MOV A,R0
+A51 MACRO ASSEMBLER  CODE_CLOCK_WORK                                                      05/04/2023 21:03:41 PAGE     3
+
+00B6 93              124      MOVC A,@A+DPTR
+00B7 C2A0            125      CLR P2.0
+00B9 F590            126      MOV P1,A
+00BB 11F4            127      ACALL DELAY
+00BD D2A0            128      SETB P2.0
+                     129      
+00BF E9              130      MOV A,R1
+00C0 93              131      MOVC A,@A+DPTR
+00C1 C2A1            132      CLR P2.1
+00C3 F590            133      MOV P1,A
+00C5 11F4            134      ACALL DELAY
+00C7 D2A1            135      SETB P2.1
+                     136      
+00C9 EA              137      MOV A,R2
+00CA 93              138      MOVC A,@A+DPTR
+00CB C2A2            139      CLR P2.2
+00CD F590            140      MOV P1,A
+00CF 11F4            141      ACALL DELAY
+00D1 D2A2            142      SETB P2.2
+                     143      
+00D3 EB              144      MOV A,R3
+00D4 93              145      MOVC A,@A+DPTR
+00D5 C2A3            146      CLR P2.3
+00D7 F590            147      MOV P1 ,A
+00D9 11F4            148      ACALL DELAY
+00DB D2A3            149      SETB P2.3
+                     150      
+00DD EC              151      MOV A,R4
+00DE 93              152      MOVC A,@A+DPTR
+00DF C2A4            153      CLR P2.4
+00E1 F590            154      MOV P1,A
+00E3 11F4            155      ACALL DELAY
+00E5 D2A4            156      SETB P2.4
+                     157      
+00E7 ED              158      MOV A,R5
+00E8 93              159      MOVC A,@A+DPTR
+00E9 C2A5            160      CLR P2.5
+00EB F590            161      MOV P1,A
+00ED 11F4            162      ACALL DELAY
+00EF D2A5            163      SETB P2.5
+                     164      
+00F1 DEC2            165      DJNZ R6, LOOP
+00F3 22              166      RET
+                     167      
+00F4                 168      DELAY:  
+00F4 D2D4            169      SETB PSW. 4
+00F6 7A0A            170      MOV R2,#10
+00F8 7B64            171      AGAIN2: MOV R3 ,#100
+00FA DBFE            172      AGAIN1:DJNZ R3,AGAIN1
+00FC DAFA            173      DJNZ R2 , AGAIN2
+00FE C2D4            174      CLR PSW. 4
+0100 22              175      RET
+                     176      
+0300                 177      ORG 300H
+0300                 178       MYDATA:
+0300 3F065B4F        179       DB 3FH,06H,5BH,4FH,66H,6DH,7DH,07H,7FH,6FH
+0304 666D7D07                
+0308 7F6F                    
+                     180        END
+A51 MACRO ASSEMBLER  CODE_CLOCK_WORK                                                      05/04/2023 21:03:41 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AGAIN1 . . . . . .  C ADDR   00FAH   A   
+AGAIN2 . . . . . .  C ADDR   00F8H   A   
+ALARM_ST . . . . .  C ADDR   0003H   A   
+DECRE_H1_1 . . . .  C ADDR   00A9H   A   
+DECRE_TH0. . . . .  C ADDR   00A5H   A   
+DECRE_TH1. . . . .  C ADDR   009DH   A   
+DELAY. . . . . . .  C ADDR   00F4H   A   
+DISPLAY. . . . . .  C ADDR   003AH   A   
+INCRE_H1_1 . . . .  C ADDR   0083H   A   
+INCRE_H1_2 . . . .  C ADDR   007BH   A   
+INCRE_H2 . . . . .  C ADDR   0073H   A   
+L1 . . . . . . . .  C ADDR   0050H   A   
+LOOP . . . . . . .  C ADDR   00B5H   A   
+MAIN . . . . . . .  C ADDR   0012H   A   
+MYDATA . . . . . .  C ADDR   0300H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+PSW. . . . . . . .  D ADDR   00D0H   A   
+RECEIVE_SIGNAL . .  C ADDR   003CH   A   
+RESTART_TIME . . .  C ADDR   0024H   A   
+RESTART_TIME_2 . .  C ADDR   0033H   A   
+SETUP_TIME . . . .  C ADDR   0015H   A   
+SHOW_NUM . . . . .  C ADDR   00B0H   A   
+SIG_H_D. . . . . .  C ADDR   0096H   A   
+SIG_H_I. . . . . .  C ADDR   006CH   A   
+SIG_M_D. . . . . .  C ADDR   008AH   A   
+SIG_M_I. . . . . .  C ADDR   0060H   A   
+TIME_CONDITION . .  C ADDR   0054H   A   
+TIME_CONDITION_2 .  C ADDR   008AH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

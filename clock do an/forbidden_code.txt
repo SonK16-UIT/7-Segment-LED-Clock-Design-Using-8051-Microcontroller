@@ -1,0 +1,46 @@
+SET_TIME:
+ RAMDATA EQU 500H
+	MOV DPTR,#RAMDATA
+	MOV A,R5
+	MOVX @DPTR,A
+	INC DPTR
+	MOV A,R4
+	MOVX @DPTR,A
+	MOV A,R3
+	INC DPTR
+	MOVX @DPTR,A
+	MOV A,R2
+	INC DPTR
+	MOVX @DPTR,A
+JMP Time_condition
+---------------------------------------------------
+ALARM_ST:
+ MOV DPTR,#RAMDATA
+ MOVC A,@A+DPTR
+ MOV B,R5
+ CJNE A,B, Time_condition
+ CLR A
+ INC DPTR
+
+ MOVC A,@A+DPTR
+ MOV B,R4
+ CJNE A,B, Time_condition
+ CLR A
+ INC DPTR
+ 
+ MOVC A,@A+DPTR
+ MOV B,R3
+ CJNE A,B, Time_condition
+ CLR A
+ INC DPTR
+ 
+ MOVC A,@A+DPTR
+ MOV B,R2
+ CJNE A,B, Time_condition
+ CLR A
+ INC DPTR
+ ACALL DELAY
+ RET
+
+
+MoVX 
